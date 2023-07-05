@@ -15,11 +15,11 @@ let row= document.getElementById("row")
 //CREO LA CARD
 data.forEach(album => {
    let col= document.createElement("div")
-   col.classList.add("col", "col-sm-6", "col-md-3")
+   col.classList.add("col", "col-sm-6", "col-md-6","col-lg-3" )
    col.innerHTML=  `
-   <div id="card" class="card m-2 border border-danger">
-  <img src="${album.img}" class="card-img-top" alt="...">
-  <div class="card-body ">
+   <div id="card" class="card m-2 border border-danger h-100 m-2">
+  <img src="${album.img}" class="card-img-top h-75" alt="...">
+  <div class="card-body h-25">
     <h5 class="card-title">${album.title}</h5>
     <p class="card-text text-success" > $${album.price} </a>
   </div>
@@ -33,7 +33,7 @@ data.forEach(album => {
 let deletebutton= document.querySelectorAll("#text")
 deletebutton.forEach((element)=>{
     element.addEventListener("click",function(){
-       element.parentElement.parentElement.remove() 
+       element.parentElement.remove() 
     })
 
 
@@ -47,12 +47,14 @@ newLi.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" 
 list.appendChild(newLi)
 console.log(newLi)
 
-// BOTTONE AGGIUNGI
+//EXTRA BOTTONE AGGIUNGI
 let card=document.querySelectorAll("#card")
  let buyButton=document.querySelectorAll("#buttonBuy")
- buyButton.forEach((element)=>{
+ buyButton.forEach((element,i)=>{
     element.addEventListener("click", function(){
-list.appendChild(element.parentElement.parentElement)
+list.appendChild(element.parentElement)
+card.classList.add("d-none")
+sessionStorage.setItem("Carrello", JSON.stringify(data[i]))
 
     })
  })
